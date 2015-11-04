@@ -2,7 +2,7 @@
 
 $imgname = "image" . date("H_i_s") . ".jpg";
 
-exec("raspistill -o ".$imgname." -w 1024 -h 768");
+exec("raspistill -o ".$imgname." -w 500 -h 768");
 
 function Redirect($url, $permanent = false)
 {
@@ -12,7 +12,8 @@ function Redirect($url, $permanent = false)
     }
     exit();
 }
-Redirect('http://192.168.1.5', false);
+//Redirect('http://192.168.1.10', false);
+Redirect('index.php', false);
 die();
 
 ?>
