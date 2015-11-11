@@ -1,23 +1,16 @@
 <html>
  <head>
+  <link href="index.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="index.js"></script>
   <title>Michael's Pi</title>
  </head>
-<style>
- div.img {
-    margin: 5px;
-    padding: 5px;
-    height: auto;
-    width: auto;
-    float: left;
-    text-align: center;
-    position: relative;
- }
-</style>
  <body>
- <h1> Welcome to Michael's Raspberry Pi!</h1> 
- <h2>
+
+ <h1> Welcome to Michael's Raspberry Pi!</h1>
+ <nav>
+	<a href="index.php">Home</a>
 	<a href="shootStill.php">TAKE A PICTURE</a>
- </h2>
+ </nav>
  </body>
 </html>
 
@@ -29,21 +22,22 @@ exec("sudo chmod 777 /var/www");
 
 if (array_key_exists('delete_file', $_POST)) {
   $filename = $_POST['delete_file'];
+  $dest = "deleted_images/".$filename;
   if (file_exists($filename)) {
-    unlink($filename);
+      unlink($filename);
   } 
 }
  
-$directory = "";
+$directory = "saved_images/";
  
 $images = glob("" . $directory . "*.jpg");
  
 foreach ($images as $image) {
 	echo '<div class="img">';
-	echo '<a href="' .$image. '"><img src="' .$image. '" onload="this.width*=0.5;this.onload=null;"/> ';
+	echo '<a target="_blank" href="' .$image. '"><img src="' .$image. '" onload="this.width*=0.5;this.onload=null;" /> ';
 	echo '<form method="post">';
 	echo '<input type="hidden" value="'.$image.'" name="delete_file" />';
-	echo '<input type="submit" value="Delete image" />';
+	echo '<input type="submit" value="Delete image" onclick="deletePhoto()"/>';
 	echo '</form></a>';
 	echo '</div>';
 } 

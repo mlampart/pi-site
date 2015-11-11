@@ -2,7 +2,7 @@
 
 $imgname = "image" . date("H_i_s") . ".jpg";
 
-exec("raspistill -o ".$imgname." -w 500 -h 768");
+exec("raspistill -o saved_images/".$imgname." -w 500 -h 768");
 
 function Redirect($url, $permanent = false)
 {
