@@ -20,6 +20,7 @@
 exec("sudo chmod 777 /dev/vchiq");
 exec("sudo chmod 777 /var/www");
 
+// Delete procedure
 if (array_key_exists('delete_file', $_POST)) {
   $filename = $_POST['delete_file'];
   $dest = "deleted_images/".$filename;
@@ -27,7 +28,7 @@ if (array_key_exists('delete_file', $_POST)) {
       unlink($filename);
   } 
 }
- 
+
 $directory = "saved_images/";
  
 $images = glob("" . $directory . "*.jpg");
@@ -41,5 +42,18 @@ foreach ($images as $image) {
 	echo '</form></a>';
 	echo '</div>';
 } 
+
+$servername = "localhost";
+$username = "pi";
+$password = "mlampar2";
+$dbname = "SavedPhotos";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
 ?>
